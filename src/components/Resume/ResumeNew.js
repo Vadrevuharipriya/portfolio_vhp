@@ -39,14 +39,21 @@ function ResumeNew() {
         </Row>
 
         <Row className="resume">
-          <Document 
-            file={pdf} 
-            className="d-flex justify-content-center" 
+          <Document
+            file={pdf}
+            className="d-flex justify-content-center"
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={(error) => console.error("Error loading PDF:", error)}
             loading="Loading PDF..."
           >
-            {numPages && <Page pageNumber={1} scale={width > 786 ? 1.7 : 0.6} />}
+            {numPages && (
+              <Page
+                pageNumber={1}
+                width={width > 786 ? 786 : Math.floor(width * 0.9)}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+              />
+            )}
           </Document>
         </Row>
 
